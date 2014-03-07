@@ -1,0 +1,20 @@
+[
+	{
+		"name"	:	"Vendor1"
+	,	"icon"	:	"www.scss.tcd.ie/~vargheat/rk/images/notifications/img1.png"
+	,	"text"	:	"Free checkup services this week"
+	,	"time"	:	"2014-02-26 15:30:32"
+	}
+,	{
+		"name"	:	"Vendor2"
+	,	"icon"	:	"www.scss.tcd.ie/~vargheat/rk/images/notifications/img2.png"
+	,	"text"	:	"Get 15% off the next repair with this voucher"
+	,	"time"	:	"2014-02-25 10:12:00"
+	}
+,	{
+		"name"	:	"Vendor3"
+	,	"icon"	:	"www.scss.tcd.ie/~vargheat/rk/images/notifications/img3.png"
+	,	"text"	:	"New performance upgrades available for the first 20 customers"
+	,	"time"	:	"2014-02-23 20:10:45"
+	}
+]
