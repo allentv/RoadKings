@@ -22,9 +22,26 @@ session_start();
 						"SaveResponses.php"
 					,	$("#notificationForm").serialize()
 					,	function(e) {
-						//alert(e);
+						alert(e);
 					}
 				);
+				
+				$.ajax(
+					{
+						type : 'POST'
+					,	url : "SendResponse.php"
+					,	data : $("#notificationForm").serialize()
+					,	success : function(e) {
+						//alert(e);
+						}
+					,	error : function(xhr, status, error) {
+							console.log(xhr);
+							console.log(status);
+							console.log(error);
+						}
+					}
+				);
+				
 				$("#createResponseSection").css("display","none");
 				$("#greyBackground").css("display","none");
 			}
@@ -41,7 +58,7 @@ session_start();
 			}
 			
 			// Reload the list of people that reports problem every 5 seconds
-			setInterval(loadReportProblem, 5000);
+			//setInterval(loadReportProblem, 5000);
 			
 			function loadReportProblem() {
 				//alert("hi");
@@ -53,7 +70,7 @@ session_start();
 						//alert(data[0].photo);
 						var newData = "";
 						var counter=0;
-						var userID = ["1111","2222","1111"];
+						var userID = ["rajanverma1989","2222","1111"];
 						for(;counter < data.length;counter++) {
 							newData += "<div id='user_reg' class='regUser' onclick='javascript:showNotificationMessageForm(\""+userID[counter]+"\");'>";
 							newData += "	<table cellpadding='3' cellspacing='3'>";
@@ -406,6 +423,7 @@ session_start();
 						</td>
 						<td>
 							<img src="../images/notifications/img1.png">
+							<input type="hidden" name="icon" value="https://www.scss.tcd.ie/~vargheat/rk/images/notifications/img1.png">
 						</td>
 					</tr>
 					<tr>
