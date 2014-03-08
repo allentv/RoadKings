@@ -10,20 +10,26 @@ session_start();
 		<script type="text/javascript" src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 		<script type="text/javascript" src="../js/Chart.min.js"></script>
 		<script type="text/javascript">
-			function sendNotificationToUser() {
-				alert($("#notificationForm").serialize());
+			$(document).ready(function() {
+				loadReportProblem();
+				
+				$("#createNotificationSection").css("display","none");
+				$("#greyBackground").css("display","none");
+			});
+		
+			function sendResponseToUser() {
 				$.post(
 						"SaveResponses.php"
 					,	$("#notificationForm").serialize()
 					,	function(e) {
-						alert(e);
+						//alert(e);
 					}
 				);
 				$("#createResponseSection").css("display","none");
 				$("#greyBackground").css("display","none");
 			}
 			
-			function cancelNotificationScreen() {
+			function cancelResponseScreen() {
 				$("#createResponseSection").css("display","none");
 				$("#greyBackground").css("display","none");
 			}
@@ -34,8 +40,8 @@ session_start();
 				$("#txtChosenUser").val(userID);
 			}
 			
-			// Reload the list of people that reports problem every 2 seconds
-			setInterval(loadReportProblem, 3000);
+			// Reload the list of people that reports problem every 5 seconds
+			setInterval(loadReportProblem, 5000);
 			
 			function loadReportProblem() {
 				//alert("hi");
@@ -55,18 +61,18 @@ session_start();
 							newData += "			<td width='10%'>";
 							newData += "				<img src='../images/reg_user_male.png' width='30' height='40'>";
 							newData += "			</td>";
-							newData += "			<td tag='location' width='60%'>";
+							newData += "			<td tag='location' width='55%'>";
 							newData += data[counter].name;
-							newData += "				</td>";
-							newData += "				<td>";
-							newData += "					|";
-							newData += "				</td>";
-							newData += "				<td tag='timeago'>";
+							newData += "			</td>";
+							newData += "			<td>";
+							newData += "				|";
+							newData += "			</td>";
+							newData += "			<td tag='timeago' wrap>";
 							newData += data[counter].datetime;
-							newData += "				</td>";
-							newData += "			</tr>";
-							newData += "		</table>";
-							newData += "	</div>";
+							newData += "			</td>";
+							newData += "		</tr>";
+							newData += "	</table>";
+							newData += "</div>";
 						}
 						
 						$("#peopleSectionContent").html(newData);
@@ -344,7 +350,7 @@ session_start();
 				</table>
 			</div>
 			<div id="responsesSection">
-				<div class="pageHeaderSection">Notifications Sent</div>
+				<div class="pageHeaderSection">Responses Sent</div>
 				<br>
 				<br>
 				<canvas id="notificationsChart" width="420" height="300"></canvas>
@@ -355,9 +361,9 @@ session_start();
 						labels : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
 						datasets : [
 							{
-								fillColor : "rgba(151,187,205,0.5)",
-								strokeColor : "rgba(151,187,205,1)",
-								pointColor : "rgba(151,187,205,1)",
+								fillColor : "rgba(0,125,0,0.5)",
+								strokeColor : "rgba(0,125,0,1)",
+								pointColor : "rgba(0,125,0,1)",
 								pointStrokeColor : "#fff",
 								data : [28,48,40,19,96,27,100,23,55,66,33,44]
 							}
@@ -375,7 +381,7 @@ session_start();
 			</div>
 		</div>
 		<div id="createResponseSection">
-			<div class="pageHeaderSection">Send Response</div>
+			<div class="pageHeaderSection">Create Response</div>
 			<br>
 			<center>
 			<form id="notificationForm" action="" method="POST">
@@ -431,13 +437,13 @@ session_start();
 					</tr>
 					<tr>
 						<td>
-							<input type="button" class="btnEnabled" onclick="javascript:sendNotificationToUser();" value="Send Notification">
+							<input type="button" class="btnEnabled" onclick="javascript:sendResponseToUser();" value="Send Response">
 						</td>
 						<td>
 							&nbsp;
 						</td>
 						<td>
-							<input type="button" class="btnEnabled" value="Cancel" onclick="javascript:cancelNotificationScreen();">
+							<input type="button" class="btnEnabled" value="Cancel" onclick="javascript:cancelResponseScreen();">
 						</td>
 					</tr>
 				</table>
